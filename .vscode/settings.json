@@ -1,4 +1,6 @@
 {
 	"git.enableSmartCommit": true,
-	"editor.formatOnSave": true
+	"editor.formatOnSave": true,
+	"html.format.endWithNewline": true,
+	"editor.minimap.enabled": false
 }

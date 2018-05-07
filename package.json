@@ -11,15 +11,16 @@
 		"watch": "ng test",
 		"lint": "ng lint && npm run lint:styles",
 		"lint:styles": "stylelint \"src/**/*.scss\"",
+		"stylelint:fix": "stylelint \"src/**/*.scss\" --fix",
 		"e2e": "ng e2e"
 	},
 	"private": true,
 	"dependencies": {
 		"@angular/animations": "^6.0.0",
+		"@angular/cdk": "^6.0.0",
 		"@angular/common": "^6.0.0",
 		"@angular/compiler": "^6.0.0",
 		"@angular/core": "^6.0.0",
-		"@angular/cdk": "^6.0.0",
 		"@angular/forms": "^6.0.0",
 		"@angular/http": "^6.0.0",
 		"@angular/material": "^6.0.0",

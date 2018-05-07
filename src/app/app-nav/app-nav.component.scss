@@ -1,0 +1,22 @@
+.sidenav-container {
+	height: 100%;
+}
+
+.sidenav {
+	min-width: 200px;
+	box-shadow: 3px 0 6px rgba(0, 0, 0, 0.24);
+}
+
+#app-main-content {
+	display: flex;
+	box-sizing: border-box;
+	padding: 0 16px;
+	width: 100%;
+	flex-direction: row;
+	align-items: center;
+	white-space: nowrap;
+}
+
+#app-sidenav-content {
+	height: 100vh;
+}

@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CdkTableModule } from '@angular/cdk/table';
+import { LayoutModule } from '@angular/cdk/layout';
 import {
 	MatAutocompleteModule,
 	MatBadgeModule,
@@ -44,6 +45,7 @@ import {
 	declarations: [],
 	exports: [
 		CdkTableModule,
+		LayoutModule,
 		MatAutocompleteModule,
 		MatBadgeModule,
 		MatBottomSheetModule,
