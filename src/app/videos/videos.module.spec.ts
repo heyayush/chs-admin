@@ -1,13 +1,13 @@
 import { VideosModule } from './videos.module';
 
 describe('VideosModule', () => {
-  let videosModule: VideosModule;
+	let videosModule: VideosModule;
 
-  beforeEach(() => {
-    videosModule = new VideosModule();
-  });
+	beforeEach(() => {
+		videosModule = new VideosModule();
+	});
 
-  it('should create an instance', () => {
-    expect(videosModule).toBeTruthy();
-  });
+	it('should create an instance', () => {
+		expect(videosModule).toBeTruthy();
+	});
 });
