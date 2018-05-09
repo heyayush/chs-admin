@@ -10,7 +10,7 @@ import { MAT_DIALOG_DATA } from '@angular/material';
 export class VideoEditorComponent implements OnInit {
 	videoCategories = VIDEOCATEGORIES;
 
-	constructor(@Inject(MAT_DIALOG_DATA) private video: any) {}
+	constructor(@Inject(MAT_DIALOG_DATA) public video: any) {}
 
 	onSubmit(video) {}
 

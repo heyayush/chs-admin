@@ -1,4 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { SharedModule } from '../../shared/shared.module';
 
 import { SongEditorComponent } from './song-editor.component';
 
@@ -8,6 +9,7 @@ describe('SongEditorComponent', () => {
 
 	beforeEach(async(() => {
 		TestBed.configureTestingModule({
+			imports: [SharedModule],
 			declarations: [SongEditorComponent]
 		}).compileComponents();
 	}));
