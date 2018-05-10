@@ -8,7 +8,7 @@
 		"start": "ng serve",
 		"build": "ng build",
 		"test": "ng test --browser ChromeHeadless --single-run",
-		"watch": "ng test --source-map=false --watch",
+		"watch": "ng test --watch",
 		"lint": "ng lint && npm run lint:styles",
 		"lint:styles": "stylelint \"src/**/*.scss\"",
 		"stylelint:fix": "stylelint \"src/**/*.scss\" --fix",

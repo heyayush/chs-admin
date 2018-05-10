@@ -1,11 +1,9 @@
 import { NgModule } from '@angular/core';
-import { async, ComponentFixture, TestBed, inject } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { SharedModule } from '../../shared/shared.module';
-import { MAT_DIALOG_DATA, MatDialog, MatDialogModule } from '@angular/material';
+import { MAT_DIALOG_DATA } from '@angular/material';
 import { VideoEditorComponent } from './video-editor.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { OverlayContainer } from '@angular/cdk/overlay';
-import { FormsModule } from '@angular/forms';
 
 const MockDialogData = {
 	id: '1231238823133',
@@ -37,45 +35,27 @@ const MockDialogData = {
 };
 
 @NgModule({
-	imports: [MatDialogModule, BrowserAnimationsModule, FormsModule, SharedModule],
+	imports: [BrowserAnimationsModule, SharedModule],
 	declarations: [VideoEditorComponent],
 	entryComponents: [VideoEditorComponent],
 	exports: [VideoEditorComponent]
 })
 class DialogTestModule {}
 
-fdescribe('VideoEditorComponent', () => {
+describe('VideoEditorComponent', () => {
 	let component: VideoEditorComponent;
 	let fixture: ComponentFixture<VideoEditorComponent>;
-	let overlayContainerElement: HTMLElement;
-	let dialog: MatDialog;
 
 	beforeEach(async(() => {
 		TestBed.configureTestingModule({
 			imports: [DialogTestModule],
-			providers: [
-				{
-					provide: OverlayContainer,
-					useFactory: () => {
-						overlayContainerElement = document.createElement('div');
-						return { getContainerElement: () => overlayContainerElement };
-					}
-				}
-			]
+			providers: [{ provide: MAT_DIALOG_DATA, useValue: MockDialogData }]
 		}).compileComponents();
 	}));
 
-	beforeEach(async(
-		inject([MAT_DIALOG_DATA], d => {
-			d = MockDialogData;
-		})
-	));
-
 	beforeEach(() => {
-		dialog = TestBed.get(MatDialog);
 		fixture = TestBed.createComponent(VideoEditorComponent);
 		component = fixture.componentInstance;
-		// component.video = MockDialogData;
 		fixture.detectChanges();
 	});
 
