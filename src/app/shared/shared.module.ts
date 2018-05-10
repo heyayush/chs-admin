@@ -3,11 +3,10 @@ import { CommonModule } from '@angular/common';
 import { GridComponent } from './grid/grid.component';
 import { MaterialModule } from './material/material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
-	imports: [CommonModule, MaterialModule, FormsModule, ReactiveFormsModule, HttpClientModule],
+	imports: [CommonModule, MaterialModule, FormsModule, ReactiveFormsModule],
 	declarations: [GridComponent],
-	exports: [MaterialModule, GridComponent, FormsModule, ReactiveFormsModule, HttpClientModule]
+	exports: [MaterialModule, GridComponent, FormsModule, ReactiveFormsModule]
 })
 export class SharedModule {}

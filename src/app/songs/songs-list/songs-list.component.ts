@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material';
 import _ from 'lodash';
 import { SongEditorComponent } from '../song-editor/song-editor.component';
-import SONGS from './mock-songs.js';
+import { SongsList } from '../song-interfaces';
 
 @Component({
 	selector: 'app-songs-list',
@@ -10,15 +10,15 @@ import SONGS from './mock-songs.js';
 	styleUrls: ['./songs-list.component.scss']
 })
 export class SongsListComponent implements OnInit {
-	songs = SONGS;
+	private songs: SongsList;
 	displayedColumns = ['id', 'title'];
 	constructor(private dialog: MatDialog) {}
 
 	ngOnInit() {}
-	openEditor(video) {
+	openEditor(song) {
 		const dialogConfig = new MatDialogConfig();
 		dialogConfig.autoFocus = true;
-		dialogConfig.data = video;
+		dialogConfig.data = song;
 		dialogConfig.height = '80vh';
 		dialogConfig.width = '70vh';
 
@@ -26,37 +26,30 @@ export class SongsListComponent implements OnInit {
 	}
 
 	onNew() {
-		const video = {
+		const song = {
 			id: '',
 			title: '',
+			album: '',
+			duration: '',
 			categories: [],
 			thumbnails: {
-				'400x207': '',
-				'293x293': '',
-				'295x144': '',
-				'640x333': '',
-				'341x307': ''
+				'54x54': '',
+				'40x40': ''
 			},
-			synopsis: '',
-			abridged_cast: [
-				{
-					name: ''
-				}
-			],
 			links: {
 				download: ''
 			}
 		};
-		this.openEditor(video);
+		this.openEditor(song);
 	}
 
-	_onEdit(video) {
-		this.openEditor(video);
+	_onEdit(song) {
+		this.openEditor(song);
 	}
 
-	_onDelete(video) {
+	_onDelete(song) {
 		this.songs = _.reject(this.songs, item => {
-			return item.id === video.id;
+			return item.id === song.id;
 		});
 	}
 }

@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material';
 import _ from 'lodash';
 import { VideoEditorComponent } from '../video-editor/video-editor.component';
-import VIDEOS from './mock-videos';
+import { VideosListService } from '../videos-list.service';
+import { VideosList } from '../video-interfaces';
 
 @Component({
 	selector: 'app-videos-list',
@@ -10,11 +11,20 @@ import VIDEOS from './mock-videos';
 	styleUrls: ['./videos-list.component.scss']
 })
 export class VideosListComponent implements OnInit {
-	videos = VIDEOS;
+	private videos: VideosList[];
 	displayedColumns = ['id', 'title'];
-	constructor(private dialog: MatDialog) {}
+	constructor(private dialog: MatDialog, private videosListService: VideosListService) {}
 
-	ngOnInit() {}
+	ngOnInit() {
+		this.getVideos();
+	}
+
+	getVideos(): void {
+		this.videosListService.getAllVideos().subscribe((vids: VideosList[]) => {
+			this.videos = vids;
+		});
+	}
+
 	openEditor(video) {
 		const dialogConfig = new MatDialogConfig();
 		dialogConfig.autoFocus = true;
