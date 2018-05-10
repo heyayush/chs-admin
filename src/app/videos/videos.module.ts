@@ -6,9 +6,12 @@ import { VideoEditorComponent } from './video-editor/video-editor.component';
 import { VideoCategoriesComponent } from './video-categories/video-categories.component';
 import { VideosListComponent } from './videos-list/videos-list.component';
 
+import { VideosListService } from './videos-list.service';
+
 @NgModule({
 	imports: [CommonModule, SharedModule],
 	declarations: [VideoEditorComponent, VideoCategoriesComponent, VideosListComponent],
-	entryComponents: [VideoEditorComponent]
+	entryComponents: [VideoEditorComponent],
+	providers: [VideosListService]
 })
 export class VideosModule {}
