@@ -10,28 +10,28 @@ import { VideosModule } from '../../videos/videos.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 describe('AppNavComponent', () => {
-	let component: AppNavComponent;
-	let fixture: ComponentFixture<AppNavComponent>;
+  let component: AppNavComponent;
+  let fixture: ComponentFixture<AppNavComponent>;
 
-	beforeEach(
-		fakeAsync(() => {
-			TestBed.configureTestingModule({
-				imports: [
-					BrowserAnimationsModule,
-					RouterTestingModule.withRoutes(routes),
-					SharedModule,
-					VideosModule,
-					SongsModule
-				],
-				declarations: [AppNavComponent, MainContentComponent]
-			}).compileComponents();
-			fixture = TestBed.createComponent(AppNavComponent);
-			component = fixture.componentInstance;
-			fixture.detectChanges();
-		})
-	);
+  beforeEach(
+    fakeAsync(() => {
+      TestBed.configureTestingModule({
+        imports: [
+          BrowserAnimationsModule,
+          RouterTestingModule.withRoutes(routes),
+          SharedModule,
+          VideosModule,
+          SongsModule
+        ],
+        declarations: [AppNavComponent, MainContentComponent]
+      }).compileComponents();
+      fixture = TestBed.createComponent(AppNavComponent);
+      component = fixture.componentInstance;
+      fixture.detectChanges();
+    })
+  );
 
-	it('should compile', () => {
-		expect(component).toBeTruthy();
-	});
+  it('should compile', () => {
+    expect(component).toBeTruthy();
+  });
 });

@@ -4,23 +4,23 @@ import { SharedModule } from '../../shared/shared.module';
 import { SongsListComponent } from './songs-list.component';
 
 describe('SongsListComponent', () => {
-	let component: SongsListComponent;
-	let fixture: ComponentFixture<SongsListComponent>;
+  let component: SongsListComponent;
+  let fixture: ComponentFixture<SongsListComponent>;
 
-	beforeEach(async(() => {
-		TestBed.configureTestingModule({
-			imports: [SharedModule],
-			declarations: [SongsListComponent]
-		}).compileComponents();
-	}));
+  beforeEach(async(() => {
+    TestBed.configureTestingModule({
+      imports: [SharedModule],
+      declarations: [SongsListComponent]
+    }).compileComponents();
+  }));
 
-	beforeEach(() => {
-		fixture = TestBed.createComponent(SongsListComponent);
-		component = fixture.componentInstance;
-		fixture.detectChanges();
-	});
+  beforeEach(() => {
+    fixture = TestBed.createComponent(SongsListComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
 
-	it('should create', () => {
-		expect(component).toBeTruthy();
-	});
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
 });

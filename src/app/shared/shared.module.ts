@@ -5,8 +5,8 @@ import { MaterialModule } from './material/material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
-	imports: [CommonModule, MaterialModule, FormsModule, ReactiveFormsModule],
-	declarations: [GridComponent],
-	exports: [MaterialModule, GridComponent, FormsModule, ReactiveFormsModule]
+  imports: [CommonModule, MaterialModule, FormsModule, ReactiveFormsModule],
+  declarations: [GridComponent],
+  exports: [MaterialModule, GridComponent, FormsModule, ReactiveFormsModule]
 })
 export class SharedModule {}

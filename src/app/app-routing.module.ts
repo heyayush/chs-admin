@@ -6,15 +6,15 @@ import { VideoCategoriesComponent } from './videos/video-categories/video-catego
 import { SongCategoriesComponent } from './songs/song-categories/song-categories.component';
 
 export const routes: Routes = [
-	{ path: '', redirectTo: 'videos', pathMatch: 'full' },
-	{ path: 'videos', component: VideosListComponent },
-	{ path: 'songs', component: SongsListComponent },
-	{ path: 'video-categories', component: VideoCategoriesComponent },
-	{ path: 'song-categories', component: SongCategoriesComponent }
+  { path: '', redirectTo: 'videos', pathMatch: 'full' },
+  { path: 'videos', component: VideosListComponent },
+  { path: 'songs', component: SongsListComponent },
+  { path: 'video-categories', component: VideoCategoriesComponent },
+  { path: 'song-categories', component: SongCategoriesComponent }
 ];
 
 @NgModule({
-	imports: [RouterModule.forRoot(routes)],
-	exports: [RouterModule]
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule]
 })
 export class AppRoutingModule {}
