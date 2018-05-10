@@ -2,5 +2,6 @@
 	"git.enableSmartCommit": true,
 	"editor.formatOnSave": true,
 	"html.format.endWithNewline": true,
-	"editor.minimap.enabled": false
+	"editor.minimap.enabled": false,
+	"git.ignoreLimitWarning": true
 }
