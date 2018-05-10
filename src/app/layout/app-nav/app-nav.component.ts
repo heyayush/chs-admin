@@ -3,11 +3,11 @@ import { BreakpointObserver, Breakpoints, BreakpointState } from '@angular/cdk/l
 import { Observable } from 'rxjs';
 
 @Component({
-	selector: 'app-nav',
-	templateUrl: './app-nav.component.html',
-	styleUrls: ['./app-nav.component.scss']
+  selector: 'app-nav',
+  templateUrl: './app-nav.component.html',
+  styleUrls: ['./app-nav.component.scss']
 })
 export class AppNavComponent {
-	isHandset: Observable<BreakpointState> = this.breakpointObserver.observe(Breakpoints.Handset);
-	constructor(private breakpointObserver: BreakpointObserver) {}
+  isHandset: Observable<BreakpointState> = this.breakpointObserver.observe(Breakpoints.Handset);
+  constructor(private breakpointObserver: BreakpointObserver) {}
 }

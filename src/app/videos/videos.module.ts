@@ -9,9 +9,9 @@ import { VideosListComponent } from './videos-list/videos-list.component';
 import { VideosListService } from './videos-list.service';
 
 @NgModule({
-	imports: [CommonModule, SharedModule],
-	declarations: [VideoEditorComponent, VideoCategoriesComponent, VideosListComponent],
-	entryComponents: [VideoEditorComponent],
-	providers: [VideosListService]
+  imports: [CommonModule, SharedModule],
+  declarations: [VideoEditorComponent, VideoCategoriesComponent, VideosListComponent],
+  entryComponents: [VideoEditorComponent],
+  providers: [VideosListService]
 })
 export class VideosModule {}

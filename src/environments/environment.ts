@@ -3,11 +3,11 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-	production: false,
-	inMemoryDBServiceOptions: {
-		dataEncapsulation: false,
-		delay: 100
-	}
+  production: false,
+  inMemoryDBServiceOptions: {
+    dataEncapsulation: false,
+    delay: 100
+  }
 };
 
 /*

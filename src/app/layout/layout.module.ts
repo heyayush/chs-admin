@@ -8,8 +8,8 @@ import { AppNavComponent } from './app-nav/app-nav.component';
 import { MainContentComponent } from './main-content/main-content.component';
 
 @NgModule({
-	imports: [CommonModule, SharedModule, AppRoutingModule],
-	declarations: [LayoutComponent, AppNavComponent, MainContentComponent],
-	exports: [LayoutComponent, AppNavComponent, MainContentComponent]
+  imports: [CommonModule, SharedModule, AppRoutingModule],
+  declarations: [LayoutComponent, AppNavComponent, MainContentComponent],
+  exports: [LayoutComponent, AppNavComponent, MainContentComponent]
 })
 export class LayoutModule {}
