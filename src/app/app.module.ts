@@ -18,24 +18,24 @@ import { InMemoryDataService } from './in-memory-data-service';
 import { environment } from '../environments/environment';
 
 @NgModule({
-	declarations: [AppComponent],
-	imports: [
-		BrowserModule,
-		AppRoutingModule,
-		BrowserAnimationsModule,
-		FormsModule,
-		ReactiveFormsModule,
-		HttpClientModule,
-		environment.production
-			? null
-			: HttpClientInMemoryWebApiModule.forRoot(InMemoryDataService, environment.inMemoryDBServiceOptions),
-		SharedModule,
-		LayoutModule,
-		SongsModule,
-		VideosModule
-	],
-	providers: [InMemoryDataService],
-	bootstrap: [AppComponent]
+  declarations: [AppComponent],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+    environment.production
+      ? null
+      : HttpClientInMemoryWebApiModule.forRoot(InMemoryDataService, environment.inMemoryDBServiceOptions),
+    SharedModule,
+    LayoutModule,
+    SongsModule,
+    VideosModule
+  ],
+  providers: [InMemoryDataService],
+  bootstrap: [AppComponent]
 })
 export class AppModule {}
 

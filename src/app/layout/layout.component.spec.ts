@@ -10,29 +10,29 @@ import { MainContentComponent } from './main-content/main-content.component';
 import { SharedModule } from '../shared/shared.module';
 
 describe('LayoutComponent', () => {
-	let component: LayoutComponent;
-	let fixture: ComponentFixture<LayoutComponent>;
+  let component: LayoutComponent;
+  let fixture: ComponentFixture<LayoutComponent>;
 
-	beforeEach(async(() => {
-		TestBed.configureTestingModule({
-			imports: [
-				BrowserAnimationsModule,
-				RouterTestingModule.withRoutes(routes),
-				SharedModule,
-				VideosModule,
-				SongsModule
-			],
-			declarations: [LayoutComponent, AppNavComponent, MainContentComponent]
-		}).compileComponents();
-	}));
+  beforeEach(async(() => {
+    TestBed.configureTestingModule({
+      imports: [
+        BrowserAnimationsModule,
+        RouterTestingModule.withRoutes(routes),
+        SharedModule,
+        VideosModule,
+        SongsModule
+      ],
+      declarations: [LayoutComponent, AppNavComponent, MainContentComponent]
+    }).compileComponents();
+  }));
 
-	beforeEach(() => {
-		fixture = TestBed.createComponent(LayoutComponent);
-		component = fixture.componentInstance;
-		fixture.detectChanges();
-	});
+  beforeEach(() => {
+    fixture = TestBed.createComponent(LayoutComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
 
-	it('should create', () => {
-		expect(component).toBeTruthy();
-	});
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
 });
