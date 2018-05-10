@@ -7,6 +7,10 @@ export const environment = {
   inMemoryDBServiceOptions: {
     dataEncapsulation: false,
     delay: 100
+  },
+  api: {
+    songs: 'api/songs',
+    videos: 'api/videos'
   }
 };
 

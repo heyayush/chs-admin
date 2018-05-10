@@ -2,26 +2,24 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { Observable, of, throwError } from 'rxjs';
 import { catchError, map, tap, retry } from 'rxjs/operators';
-import { VideosList } from './video-interfaces';
 
-const httpOptions = {
-  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
-};
+import { environment } from '../../environments/environment';
+import { VideosList } from './video-interfaces';
 
 @Injectable({
   providedIn: 'root'
 })
 export class VideosListService {
-  private videosUrl = 'api/videos'; // URL to web api
+  private httpOptions = {
+    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+  };
+  private videosUrl = environment.api.videos; // URL to web api
 
   constructor(private http: HttpClient) {}
 
   /** GET videos from the server */
   getAllVideos(): Observable<VideosList[]> {
-    return this.http.get<VideosList[]>(this.videosUrl).pipe(
-      retry(2), // retry a failed request up to 2 times
-      catchError(this.handleError) // then handle the error
-    );
+    return this.http.get<VideosList[]>(this.videosUrl).pipe(retry(2), catchError(this.handleError));
   }
 
   private handleError(error: HttpErrorResponse) {

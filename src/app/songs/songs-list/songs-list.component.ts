@@ -3,6 +3,7 @@ import { MatDialog, MatDialogConfig } from '@angular/material';
 import _ from 'lodash';
 import { SongEditorComponent } from '../song-editor/song-editor.component';
 import { SongsList } from '../song-interfaces';
+import { SongsListService } from '../songs-list.service';
 
 @Component({
   selector: 'app-songs-list',
@@ -10,11 +11,20 @@ import { SongsList } from '../song-interfaces';
   styleUrls: ['./songs-list.component.scss']
 })
 export class SongsListComponent implements OnInit {
-  private songs: SongsList;
+  private songs: SongsList[];
   displayedColumns = ['id', 'title'];
-  constructor(private dialog: MatDialog) {}
+  constructor(private dialog: MatDialog, private songListService: SongsListService) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.getSongs();
+  }
+
+  getSongs(): void {
+    this.songListService.getAllSongs().subscribe((songs: SongsList[]) => {
+      this.songs = songs;
+    });
+  }
+
   openEditor(song) {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.autoFocus = true;
