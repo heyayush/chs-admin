@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import SONGCATEGORIES from './mock-song-categories.js';
 import _ from 'lodash';
+
+import { SongCategories, SongsList } from '../song-interfaces';
+import { SongsListService } from '../songs-list.service';
 
 @Component({
   selector: 'app-song-categories',
@@ -9,20 +11,28 @@ import _ from 'lodash';
 })
 export class SongCategoriesComponent implements OnInit {
   displayedColumns = ['id', 'name'];
-  songCategories = SONGCATEGORIES;
+  private songCategories: SongCategories[];
 
-  constructor() {}
+  constructor(private songsListService: SongsListService) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.getSongCategories();
+  }
 
-  _onEdit(video) {
-    // this.openEditor(video);
+  getSongCategories(): void {
+    this.songsListService.getAllSongCategories().subscribe((SongCategoriesData: SongCategories[]) => {
+      this.songCategories = SongCategoriesData;
+    });
+  }
+
+  _onEdit(song) {
+    // this.openEditor(song);
     console.log('edit me');
   }
 
-  _onDelete(video) {
+  _onDelete(song) {
     this.songCategories = _.reject(this.songCategories, item => {
-      return item.id === video.id;
+      return item.id === song.id;
     });
   }
 }

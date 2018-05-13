@@ -4,7 +4,7 @@ import { Observable, of, throwError } from 'rxjs';
 import { catchError, map, tap, retry } from 'rxjs/operators';
 
 import { environment } from '../../environments/environment';
-import { VideosList } from './video-interfaces';
+import { VideosList, VideoCategories } from './video-interfaces';
 
 @Injectable({
   providedIn: 'root'
@@ -13,13 +13,19 @@ export class VideosListService {
   private httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
-  private videosUrl = environment.api.videos; // URL to web api
+  private videosUrl = environment.api.videos;
+  private videoCategoriesUrl = environment.api.videoCategories;
 
   constructor(private http: HttpClient) {}
 
   /** GET videos from the server */
   getAllVideos(): Observable<VideosList[]> {
     return this.http.get<VideosList[]>(this.videosUrl).pipe(retry(2), catchError(this.handleError));
+  }
+
+  /** GET videos from the server */
+  getAllVideoCategories(): Observable<VideoCategories[]> {
+    return this.http.get<VideoCategories[]>(this.videoCategoriesUrl).pipe(retry(2), catchError(this.handleError));
   }
 
   private handleError(error: HttpErrorResponse) {

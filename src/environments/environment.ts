@@ -10,7 +10,9 @@ export const environment = {
   },
   api: {
     songs: 'api/songs',
-    videos: 'api/videos'
+    videos: 'api/videos',
+    videoCategories: 'api/videoCategories',
+    songCategories: 'api/songCategories'
   }
 };
 

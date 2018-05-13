@@ -4,7 +4,7 @@ import { Observable, of, throwError } from 'rxjs';
 import { catchError, map, tap, retry } from 'rxjs/operators';
 
 import { environment } from '../../environments/environment';
-import { SongsList } from './song-interfaces';
+import { SongsList, SongCategories } from './song-interfaces';
 
 @Injectable({
   providedIn: 'root'
@@ -13,13 +13,18 @@ export class SongsListService {
   private httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
-  private songsUrl = environment.api.songs; // URL to web api
-
+  private songsUrl = environment.api.songs;
+  private songCategoriesUrl = environment.api.songCategories;
   constructor(private http: HttpClient) {}
 
   /** GET songs from the server */
   getAllSongs(): Observable<SongsList[]> {
     return this.http.get<SongsList[]>(this.songsUrl).pipe(retry(2), catchError(this.handleError));
+  }
+
+  /** GET song categories from the server */
+  getAllSongCategories(): Observable<SongCategories[]> {
+    return this.http.get<SongCategories[]>(this.songCategoriesUrl).pipe(retry(2), catchError(this.handleError));
   }
 
   private handleError(error: HttpErrorResponse) {

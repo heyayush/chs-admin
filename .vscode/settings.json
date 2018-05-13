@@ -3,5 +3,8 @@
   "editor.formatOnSave": true,
   "html.format.endWithNewline": true,
   "editor.minimap.enabled": false,
-  "git.ignoreLimitWarning": true
+  "git.ignoreLimitWarning": true,
+  "workbench.colorCustomizations": {
+    "editorIndentGuide.activeBackground": "#fffb00"
+  }
 }

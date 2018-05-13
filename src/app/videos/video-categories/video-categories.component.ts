@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import VIDEOCATEGORIES from './mock-video-categories.js';
 import _ from 'lodash';
+
+import { VideoCategories } from '../video-interfaces';
+import { VideosListService } from '../videos-list.service';
 
 @Component({
   selector: 'app-video-categories',
@@ -9,11 +11,19 @@ import _ from 'lodash';
 })
 export class VideoCategoriesComponent implements OnInit {
   displayedColumns = ['id', 'name'];
-  videoCategories = VIDEOCATEGORIES;
+  private videoCategories: VideoCategories[];
 
-  constructor() {}
+  constructor(private videosListService: VideosListService) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.getVideoCategories();
+  }
+
+  getVideoCategories(): void {
+    this.videosListService.getAllVideoCategories().subscribe((videoCategoriesData: VideoCategories[]) => {
+      this.videoCategories = videoCategoriesData;
+    });
+  }
 
   _onEdit(video) {
     // this.openEditor(video);

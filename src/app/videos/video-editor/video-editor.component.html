@@ -8,8 +8,8 @@
   </mat-form-field>
   <br/>
   <mat-form-field class="full-width">
-    <mat-select placeholder="Categories" [(ngModel)]="video.categories" name="categories" multiple="true">
-      <mat-option *ngFor="let category of categories" [value]="category.id">
+    <mat-select placeholder="Categories" [(ngModel)]="video.name" name="categories" multiple="true">
+      <mat-option *ngFor="let category of videoCategories" [value]="category.id">
         {{ category.name }}
       </mat-option>
     </mat-select>
