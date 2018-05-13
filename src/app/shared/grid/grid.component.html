@@ -1,11 +1,11 @@
 <mat-table [dataSource]="gridData">
   <ng-container *ngFor="let column of gridColumns" matColumnDef={{column}}>
-    <mat-header-cell *matHeaderCellDef>{{column}}</mat-header-cell>
+		<mat-header-cell *matHeaderCellDef><h2>{{column.toUpperCase()}}</h2></mat-header-cell>
     <mat-cell *matCellDef="let row">{{row[column]}}</mat-cell>
   </ng-container>
 
   <ng-container matColumnDef="actions">
-    <mat-header-cell *matHeaderCellDef>Actions</mat-header-cell>
+    <mat-header-cell *matHeaderCellDef><h2>ACTIONS</h2></mat-header-cell>
     <mat-cell *matCellDef="let cell">
       <button mat-icon-button>
         <mat-icon (click)="_onEdit(cell)">mode_edit</mat-icon>
