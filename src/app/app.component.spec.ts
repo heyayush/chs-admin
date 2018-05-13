@@ -8,16 +8,16 @@ import { SongsModule } from './songs/songs.module';
 import { VideosModule } from './videos/videos.module';
 
 describe('AppComponent', () => {
-	beforeEach(async(() => {
-		TestBed.configureTestingModule({
-			imports: [BrowserAnimationsModule, LayoutModule, VideosModule, SongsModule],
-			declarations: [AppComponent],
-			providers: [{ provide: APP_BASE_HREF, useValue: '/' }]
-		}).compileComponents();
-	}));
-	it('should create the app', async(() => {
-		const fixture = TestBed.createComponent(AppComponent);
-		const app = fixture.debugElement.componentInstance;
-		expect(app).toBeTruthy();
-	}));
+  beforeEach(async(() => {
+    TestBed.configureTestingModule({
+      imports: [BrowserAnimationsModule, LayoutModule, VideosModule, SongsModule],
+      declarations: [AppComponent],
+      providers: [{ provide: APP_BASE_HREF, useValue: '/' }]
+    }).compileComponents();
+  }));
+  it('should create the app', async(() => {
+    const fixture = TestBed.createComponent(AppComponent);
+    const app = fixture.debugElement.componentInstance;
+    expect(app).toBeTruthy();
+  }));
 });

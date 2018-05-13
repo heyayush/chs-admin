@@ -1,22 +1,36 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import VIDEOCATEGORIES from '../video-categories/mock-video-categories.js';
 import { MAT_DIALOG_DATA } from '@angular/material';
 
+import { VideosList, VideoCategories } from '../video-interfaces';
+import { VideosListService } from '../videos-list.service';
+
 @Component({
-	selector: 'app-video-editor',
-	templateUrl: './video-editor.component.html',
-	styleUrls: ['./video-editor.component.scss']
+  selector: 'app-video-editor',
+  templateUrl: './video-editor.component.html',
+  styleUrls: ['./video-editor.component.scss']
 })
 export class VideoEditorComponent implements OnInit {
-	videoCategories = VIDEOCATEGORIES;
+  private videoCategories: VideoCategories[];
 
-	constructor(@Inject(MAT_DIALOG_DATA) public video: any) {}
+  constructor(@Inject(MAT_DIALOG_DATA) public video: VideosList, private videosListService: VideosListService) {}
 
-	onSubmit(video) {}
+  onSubmit(video) {}
 
-	addCast() {
-		this.video.abridged_cast.push({ name: '' });
-	}
+  addCast() {
+    this.video.abridged_cast.push({
+      name: '',
+      id: 0,
+      characters: []
+    });
+  }
 
-	ngOnInit() {}
+  ngOnInit() {
+    this.getVideoCategories();
+  }
+
+  getVideoCategories(): void {
+    this.videosListService.getAllVideoCategories().subscribe((videoCategoriesData: VideoCategories[]) => {
+      this.videoCategories = videoCategoriesData;
+    });
+  }
 }

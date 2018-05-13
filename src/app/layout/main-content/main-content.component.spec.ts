@@ -9,23 +9,23 @@ import { VideosModule } from '../../videos/videos.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 describe('MainContentComponent', () => {
-	let component: MainContentComponent;
-	let fixture: ComponentFixture<MainContentComponent>;
+  let component: MainContentComponent;
+  let fixture: ComponentFixture<MainContentComponent>;
 
-	beforeEach(async(() => {
-		TestBed.configureTestingModule({
-			imports: [RouterTestingModule.withRoutes(routes), VideosModule, SongsModule],
-			declarations: [MainContentComponent]
-		}).compileComponents();
-	}));
+  beforeEach(async(() => {
+    TestBed.configureTestingModule({
+      imports: [RouterTestingModule.withRoutes(routes), VideosModule, SongsModule],
+      declarations: [MainContentComponent]
+    }).compileComponents();
+  }));
 
-	beforeEach(() => {
-		fixture = TestBed.createComponent(MainContentComponent);
-		component = fixture.componentInstance;
-		fixture.detectChanges();
-	});
+  beforeEach(() => {
+    fixture = TestBed.createComponent(MainContentComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
 
-	it('should create', () => {
-		expect(component).toBeTruthy();
-	});
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
 });

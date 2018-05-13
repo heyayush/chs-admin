@@ -2,61 +2,64 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material';
 import _ from 'lodash';
 import { SongEditorComponent } from '../song-editor/song-editor.component';
-import SONGS from './mock-songs.js';
+import { SongsList } from '../song-interfaces';
+import { SongsListService } from '../songs-list.service';
 
 @Component({
-	selector: 'app-songs-list',
-	templateUrl: './songs-list.component.html',
-	styleUrls: ['./songs-list.component.scss']
+  selector: 'app-songs-list',
+  templateUrl: './songs-list.component.html',
+  styleUrls: ['./songs-list.component.scss']
 })
 export class SongsListComponent implements OnInit {
-	songs = SONGS;
-	displayedColumns = ['id', 'title'];
-	constructor(private dialog: MatDialog) {}
+  private songs: SongsList[];
+  displayedColumns = ['id', 'title'];
+  constructor(private dialog: MatDialog, private songListService: SongsListService) {}
 
-	ngOnInit() {}
-	openEditor(video) {
-		const dialogConfig = new MatDialogConfig();
-		dialogConfig.autoFocus = true;
-		dialogConfig.data = video;
-		dialogConfig.height = '80vh';
-		dialogConfig.width = '70vh';
+  ngOnInit() {
+    this.getSongs();
+  }
 
-		this.dialog.open(SongEditorComponent, dialogConfig);
-	}
+  getSongs(): void {
+    this.songListService.getAllSongs().subscribe((songs: SongsList[]) => {
+      this.songs = songs;
+    });
+  }
 
-	onNew() {
-		const video = {
-			id: '',
-			title: '',
-			categories: [],
-			thumbnails: {
-				'400x207': '',
-				'293x293': '',
-				'295x144': '',
-				'640x333': '',
-				'341x307': ''
-			},
-			synopsis: '',
-			abridged_cast: [
-				{
-					name: ''
-				}
-			],
-			links: {
-				download: ''
-			}
-		};
-		this.openEditor(video);
-	}
+  openEditor(song) {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.autoFocus = true;
+    dialogConfig.data = song;
+    dialogConfig.height = '80vh';
+    dialogConfig.width = '70vh';
 
-	_onEdit(video) {
-		this.openEditor(video);
-	}
+    this.dialog.open(SongEditorComponent, dialogConfig);
+  }
 
-	_onDelete(video) {
-		this.songs = _.reject(this.songs, item => {
-			return item.id === video.id;
-		});
-	}
+  onNew() {
+    const song = {
+      id: '',
+      title: '',
+      album: '',
+      duration: '',
+      categories: [],
+      thumbnails: {
+        '54x54': '',
+        '40x40': ''
+      },
+      links: {
+        download: ''
+      }
+    };
+    this.openEditor(song);
+  }
+
+  _onEdit(song) {
+    this.openEditor(song);
+  }
+
+  _onDelete(song) {
+    this.songs = _.reject(this.songs, item => {
+      return item.id === song.id;
+    });
+  }
 }
