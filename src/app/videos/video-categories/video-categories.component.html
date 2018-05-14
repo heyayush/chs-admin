@@ -1,2 +1,5 @@
-<app-grid [gridData]="videoCategories" [gridColumns]="displayedColumns" (onEdit)="_onEdit($event)" (onDelete)="_onDelete($event)">
+<button class="pull-bottom-right" mat-fab (click)="onNew()">
+	<mat-icon>add</mat-icon>
+</button>
+<app-grid [gridData]="videoCategories" [gridColumns]="displayedColumns" (edit)="_onEdit($event)" (delete)="_onDelete($event)">
 </app-grid>

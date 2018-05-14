@@ -1,1 +1,35 @@
-<p>song-editor works!</p>
+<form (ngSubmit)="onSubmit(song)">
+  <mat-form-field class="full-width">
+    <input matInput name="title" placeholder="Title" [(ngModel)]="song.title">
+  </mat-form-field>
+  <br/>
+  <mat-form-field class="full-width">
+    <input matInput name="album" placeholder="Album" [(ngModel)]="song.album">
+  </mat-form-field>
+  <br/>
+  <mat-form-field class="full-width">
+    <input matInput name="duration" placeholder="Duration" [(ngModel)]="song.duration">
+  </mat-form-field>
+  <br/>
+  <mat-form-field class="full-width">
+    <mat-select placeholder="Categories" [(ngModel)]="song.name" name="categories" multiple="true">
+      <mat-option *ngFor="let category of songCategories" [value]="category.id">
+        {{ category.name }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <br/>
+  <mat-form-field class="full-width">
+    <input matInput name="thumbnail400x207" placeholder="Thumbnail 400x207" [(ngModel)]="song.thumbnails['400x207']">
+  </mat-form-field>
+  <br/>
+  <mat-form-field class="full-width">
+    <input matInput name="thumbnail293x293" placeholder="Thumbnail 293x293" [(ngModel)]="song.thumbnails['293x293']">
+  </mat-form-field>
+  <br/>
+  <mat-form-field class="full-width">
+    <input matInput name="download" placeholder="Download URL" [(ngModel)]="song.links.download">
+  </mat-form-field>
+  <br/>
+  <button type="submit" mat-raised-button color="accent" [mat-dialog-close]="true">Save</button>
+</form>

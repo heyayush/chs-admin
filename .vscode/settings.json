@@ -6,5 +6,6 @@
   "git.ignoreLimitWarning": true,
   "workbench.colorCustomizations": {
     "editorIndentGuide.activeBackground": "#fffb00"
-  }
+  },
+  "prettier.stylelintIntegration": true
 }
