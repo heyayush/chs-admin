@@ -1,6 +1,8 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material';
+
 import { SongCategories } from '../song-interfaces';
+import { SongsService } from '../songs.service';
 
 @Component({
   selector: 'app-song-categories-editor',
@@ -8,9 +10,11 @@ import { SongCategories } from '../song-interfaces';
   styleUrls: ['./song-categories-editor.component.scss']
 })
 export class SongCategoriesEditorComponent implements OnInit {
-  constructor(@Inject(MAT_DIALOG_DATA) public category: SongCategories) {}
+  constructor(@Inject(MAT_DIALOG_DATA) private category: SongCategories, private songsService: SongsService) {}
 
   ngOnInit() {}
 
-  onSubmit(category) {}
+  onSubmit(category: SongCategories) {
+    this.songsService.updateCategory(category);
+  }
 }

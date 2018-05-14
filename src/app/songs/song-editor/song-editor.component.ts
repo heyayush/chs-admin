@@ -2,7 +2,7 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material';
 
 import { SongCategories, SongsList } from '../song-interfaces';
-import { SongsListService } from '../songs-list.service';
+import { SongsService } from '../songs.service';
 
 @Component({
   selector: 'app-song-editor',
@@ -12,16 +12,18 @@ import { SongsListService } from '../songs-list.service';
 export class SongEditorComponent implements OnInit {
   private songCategories: SongCategories[];
 
-  constructor(@Inject(MAT_DIALOG_DATA) public song: SongsList, private songsListService: SongsListService) {}
+  constructor(@Inject(MAT_DIALOG_DATA) public song: SongsList, private songsService: SongsService) {}
 
-  onSubmit(song) {}
+  onSubmit(song: SongsList) {
+    this.songsService.updateSong(song);
+  }
 
   ngOnInit() {
     this.getSongCategories();
   }
 
   getSongCategories(): void {
-    this.songsListService.getAllSongCategories().subscribe((songCategoriesData: SongCategories[]) => {
+    this.songsService.getAllSongCategories().subscribe((songCategoriesData: SongCategories[]) => {
       this.songCategories = songCategoriesData;
     });
   }

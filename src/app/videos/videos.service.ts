@@ -9,7 +9,7 @@ import { VideosList, VideoCategories } from './video-interfaces';
 @Injectable({
   providedIn: 'root'
 })
-export class VideosListService {
+export class VideosService {
   private httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
@@ -27,6 +27,14 @@ export class VideosListService {
   getAllVideoCategories(): Observable<VideoCategories[]> {
     return this.http.get<VideoCategories[]>(this.videoCategoriesUrl).pipe(retry(2), catchError(this.handleError));
   }
+
+  updateCategory(category: VideoCategories) {}
+
+  deleteCategory(category: VideoCategories) {}
+
+  updateVideo(category: VideosList) {}
+
+  deleteVideo(category: VideosList) {}
 
   private handleError(error: HttpErrorResponse) {
     if (error.error instanceof ErrorEvent) {

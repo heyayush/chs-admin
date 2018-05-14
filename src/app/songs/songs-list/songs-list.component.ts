@@ -3,7 +3,7 @@ import { MatDialog, MatDialogConfig } from '@angular/material';
 import _ from 'lodash';
 import { SongEditorComponent } from '../song-editor/song-editor.component';
 import { SongsList } from '../song-interfaces';
-import { SongsListService } from '../songs-list.service';
+import { SongsService } from '../songs.service';
 
 @Component({
   selector: 'app-songs-list',
@@ -13,14 +13,14 @@ import { SongsListService } from '../songs-list.service';
 export class SongsListComponent implements OnInit {
   private songs: SongsList[];
   displayedColumns = ['id', 'title'];
-  constructor(private dialog: MatDialog, private songListService: SongsListService) {}
+  constructor(private dialog: MatDialog, private songsService: SongsService) {}
 
   ngOnInit() {
     this.getSongs();
   }
 
   getSongs(): void {
-    this.songListService.getAllSongs().subscribe((songs: SongsList[]) => {
+    this.songsService.getAllSongs().subscribe((songs: SongsList[]) => {
       this.songs = songs;
     });
   }
@@ -53,13 +53,14 @@ export class SongsListComponent implements OnInit {
     this.openEditor(song);
   }
 
-  _onEdit(song) {
+  onEdit(song) {
     this.openEditor(song);
   }
 
-  _onDelete(song) {
+  onDelete(song) {
     this.songs = _.reject(this.songs, item => {
       return item.id === song.id;
     });
+    this.songsService.deleteSong(song);
   }
 }

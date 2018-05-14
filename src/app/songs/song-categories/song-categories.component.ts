@@ -3,7 +3,7 @@ import _ from 'lodash';
 import { MatDialog, MatDialogConfig } from '@angular/material';
 
 import { SongCategories, SongsList } from '../song-interfaces';
-import { SongsListService } from '../songs-list.service';
+import { SongsService } from '../songs.service';
 import { SongCategoriesEditorComponent } from '../song-categories-editor/song-categories-editor.component';
 
 @Component({
@@ -15,29 +15,29 @@ export class SongCategoriesComponent implements OnInit {
   displayedColumns = ['id', 'name'];
   private songCategories: SongCategories[];
 
-  constructor(private dialog: MatDialog, private songsListService: SongsListService) {}
+  constructor(private dialog: MatDialog, private songsService: SongsService) {}
 
   ngOnInit() {
     this.getSongCategories();
   }
 
   getSongCategories(): void {
-    this.songsListService.getAllSongCategories().subscribe((SongCategoriesData: SongCategories[]) => {
+    this.songsService.getAllSongCategories().subscribe((SongCategoriesData: SongCategories[]) => {
       this.songCategories = SongCategoriesData;
     });
   }
 
-  openEditor(video) {
+  openEditor(category: SongCategories) {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.autoFocus = true;
-    dialogConfig.data = video;
+    dialogConfig.data = category;
     dialogConfig.height = '80vh';
     dialogConfig.width = '70vh';
     this.dialog.open(SongCategoriesEditorComponent, dialogConfig);
   }
 
   onNew() {
-    const video = {
+    const category = {
       id: '',
       name: '',
       thumbnails: {
@@ -46,18 +46,19 @@ export class SongCategoriesComponent implements OnInit {
         '300x300': '',
         '341x307': ''
       },
-      sequence: ''
+      sequence: this.songCategories.length + 1
     };
-    this.openEditor(video);
+    this.openEditor(category);
   }
 
-  _onEdit(song) {
-    this.openEditor(song);
+  onEdit(category: SongCategories) {
+    this.openEditor(category);
   }
 
-  _onDelete(song) {
+  onDelete(category: SongCategories) {
     this.songCategories = _.reject(this.songCategories, item => {
-      return item.id === song.id;
+      return item.id === category.id;
     });
+    this.songsService.deleteCategory(category);
   }
 }

@@ -3,7 +3,7 @@ import _ from 'lodash';
 import { MatDialog, MatDialogConfig } from '@angular/material';
 
 import { VideoCategories } from '../video-interfaces';
-import { VideosListService } from '../videos-list.service';
+import { VideosService } from '../videos.service';
 import { VideoCategoriesEditorComponent } from '../video-categories-editor/video-categories-editor.component';
 
 @Component({
@@ -15,29 +15,29 @@ export class VideoCategoriesComponent implements OnInit {
   displayedColumns = ['id', 'name'];
   private videoCategories: VideoCategories[];
 
-  constructor(private dialog: MatDialog, private videosListService: VideosListService) {}
+  constructor(private dialog: MatDialog, private videosService: VideosService) {}
 
   ngOnInit() {
     this.getVideoCategories();
   }
 
   getVideoCategories(): void {
-    this.videosListService.getAllVideoCategories().subscribe((videoCategoriesData: VideoCategories[]) => {
+    this.videosService.getAllVideoCategories().subscribe((videoCategoriesData: VideoCategories[]) => {
       this.videoCategories = videoCategoriesData;
     });
   }
 
-  openEditor(video) {
+  openEditor(category) {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.autoFocus = true;
-    dialogConfig.data = video;
+    dialogConfig.data = category;
     dialogConfig.height = '80vh';
     dialogConfig.width = '70vh';
     this.dialog.open(VideoCategoriesEditorComponent, dialogConfig);
   }
 
   onNew() {
-    const video = {
+    const category = {
       id: '',
       name: '',
       thumbnails: {
@@ -46,18 +46,19 @@ export class VideoCategoriesComponent implements OnInit {
         '300x300': '',
         '341x307': ''
       },
-      sequence: ''
+      sequence: this.videoCategories.length + 1
     };
-    this.openEditor(video);
+    this.openEditor(category);
   }
 
-  _onEdit(video) {
-    this.openEditor(video);
+  onEdit(category: VideoCategories) {
+    this.openEditor(category);
   }
 
-  _onDelete(video) {
+  onDelete(category: VideoCategories) {
     this.videoCategories = _.reject(this.videoCategories, item => {
-      return item.id === video.id;
+      return item.id === category.id;
     });
+    this.videosService.deleteCategory(category);
   }
 }
