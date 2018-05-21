@@ -2,7 +2,7 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material';
 
 import { VideosList, VideoCategories } from '../video-interfaces';
-import { VideosListService } from '../videos-list.service';
+import { VideosService } from '../videos.service';
 
 @Component({
   selector: 'app-video-editor',
@@ -12,14 +12,16 @@ import { VideosListService } from '../videos-list.service';
 export class VideoEditorComponent implements OnInit {
   private videoCategories: VideoCategories[];
 
-  constructor(@Inject(MAT_DIALOG_DATA) public video: VideosList, private videosListService: VideosListService) {}
+  constructor(@Inject(MAT_DIALOG_DATA) public video: VideosList, private videosService: VideosService) {}
 
-  onSubmit(video) {}
+  onSubmit(video: VideosList) {
+    this.videosService.updateVideo(video);
+  }
 
   addCast() {
     this.video.abridged_cast.push({
       name: '',
-      id: 0,
+      id: '',
       characters: []
     });
   }
@@ -29,7 +31,7 @@ export class VideoEditorComponent implements OnInit {
   }
 
   getVideoCategories(): void {
-    this.videosListService.getAllVideoCategories().subscribe((videoCategoriesData: VideoCategories[]) => {
+    this.videosService.getAllVideoCategories().subscribe((videoCategoriesData: VideoCategories[]) => {
       this.videoCategories = videoCategoriesData;
     });
   }

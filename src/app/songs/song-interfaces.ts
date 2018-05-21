@@ -8,7 +8,7 @@ interface ThumbnailsSongsList {
 }
 
 export interface SongsList {
-  id: number;
+  id: string;
   title: string;
   album: string;
   duration: number;

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material';
 import _ from 'lodash';
 import { VideoEditorComponent } from '../video-editor/video-editor.component';
-import { VideosListService } from '../videos-list.service';
+import { VideosService } from '../videos.service';
 import { VideosList } from '../video-interfaces';
 
 @Component({
@@ -13,25 +13,24 @@ import { VideosList } from '../video-interfaces';
 export class VideosListComponent implements OnInit {
   private videos: VideosList[];
   displayedColumns = ['id', 'title'];
-  constructor(private dialog: MatDialog, private videosListService: VideosListService) {}
+  constructor(private dialog: MatDialog, private videosService: VideosService) {}
 
   ngOnInit() {
     this.getVideos();
   }
 
   getVideos(): void {
-    this.videosListService.getAllVideos().subscribe((vids: VideosList[]) => {
+    this.videosService.getAllVideos().subscribe((vids: VideosList[]) => {
       this.videos = vids;
     });
   }
 
-  openEditor(video) {
+  openEditor(video: VideosList) {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.autoFocus = true;
     dialogConfig.data = video;
     dialogConfig.height = '80vh';
     dialogConfig.width = '70vh';
-
     this.dialog.open(VideoEditorComponent, dialogConfig);
   }
 
@@ -50,7 +49,9 @@ export class VideosListComponent implements OnInit {
       synopsis: '',
       abridged_cast: [
         {
-          name: ''
+          id: '',
+          name: '',
+          characters: []
         }
       ],
       links: {
@@ -60,13 +61,14 @@ export class VideosListComponent implements OnInit {
     this.openEditor(video);
   }
 
-  _onEdit(video) {
+  onEdit(video: VideosList) {
     this.openEditor(video);
   }
 
-  _onDelete(video) {
+  onDelete(video: VideosList) {
     this.videos = _.reject(this.videos, item => {
       return item.id === video.id;
     });
+    this.videosService.deleteVideo(video);
   }
 }

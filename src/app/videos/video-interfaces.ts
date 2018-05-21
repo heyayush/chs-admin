@@ -1,6 +1,6 @@
 interface Cast {
   name: string;
-  id: number;
+  id: string;
   characters: Array<string>;
 }
 
@@ -17,7 +17,7 @@ interface ThumbnailsVideosList {
 }
 
 export interface VideosList {
-  id: number;
+  id: string;
   title: string;
   categories: Array<string>;
   thumbnails: ThumbnailsVideosList;
@@ -34,7 +34,7 @@ interface ThumbnailsVideoCategories {
 }
 
 export interface VideoCategories {
-  id: number;
+  id: string;
   name: string;
   thumbnails: ThumbnailsVideoCategories;
   sequence: number;

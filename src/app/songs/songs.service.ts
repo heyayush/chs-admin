@@ -9,7 +9,7 @@ import { SongsList, SongCategories } from './song-interfaces';
 @Injectable({
   providedIn: 'root'
 })
-export class SongsListService {
+export class SongsService {
   private httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
@@ -26,6 +26,14 @@ export class SongsListService {
   getAllSongCategories(): Observable<SongCategories[]> {
     return this.http.get<SongCategories[]>(this.songCategoriesUrl).pipe(retry(2), catchError(this.handleError));
   }
+
+  updateCategory(category: SongCategories) {}
+
+  deleteCategory(category: SongCategories) {}
+
+  updateSong(category: SongsList) {}
+
+  deleteSong(category: SongsList) {}
 
   private handleError(error: HttpErrorResponse) {
     if (error.error instanceof ErrorEvent) {

@@ -1,0 +1,27 @@
+<form (ngSubmit)="onSubmit(category)">
+  <mat-form-field class="full-width">
+    <input matInput name="name" placeholder="Name" [(ngModel)]="category.name">
+  </mat-form-field>
+  <br/>
+  <mat-form-field class="full-width">
+    <input matInput name="thumbnail270x140" placeholder="Thumbnail 270x140" [(ngModel)]="category.thumbnails['270x140']">
+  </mat-form-field>
+  <br/>
+  <mat-form-field class="full-width">
+    <input matInput name="thumbnail295x144" placeholder="Thumbnail 295x144" [(ngModel)]="category.thumbnails['295x144']">
+  </mat-form-field>
+  <br/>
+  <mat-form-field class="full-width">
+    <input matInput name="thumbnail300x300" placeholder="Thumbnail 300x300" [(ngModel)]="category.thumbnails['300x300']">
+  </mat-form-field>
+  <br/>
+  <mat-form-field class="full-width">
+    <input matInput name="thumbnail341x307" placeholder="Thumbnail 341x307" [(ngModel)]="category.thumbnails['341x307']">
+  </mat-form-field>
+  <br/>
+  <mat-form-field class="full-width">
+    <input matInput name="sequence" placeholder="Sequence" [(ngModel)]="category.sequence">
+  </mat-form-field>
+  <br/>
+  <button type="submit" mat-raised-button color="accent" [mat-dialog-close]="true">Save</button>
+</form>

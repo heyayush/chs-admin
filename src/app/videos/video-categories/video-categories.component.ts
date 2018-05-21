@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import _ from 'lodash';
+import { MatDialog, MatDialogConfig } from '@angular/material';
 
 import { VideoCategories } from '../video-interfaces';
-import { VideosListService } from '../videos-list.service';
+import { VideosService } from '../videos.service';
+import { VideoCategoriesEditorComponent } from '../video-categories-editor/video-categories-editor.component';
 
 @Component({
   selector: 'app-video-categories',
@@ -13,26 +15,50 @@ export class VideoCategoriesComponent implements OnInit {
   displayedColumns = ['id', 'name'];
   private videoCategories: VideoCategories[];
 
-  constructor(private videosListService: VideosListService) {}
+  constructor(private dialog: MatDialog, private videosService: VideosService) {}
 
   ngOnInit() {
     this.getVideoCategories();
   }
 
   getVideoCategories(): void {
-    this.videosListService.getAllVideoCategories().subscribe((videoCategoriesData: VideoCategories[]) => {
+    this.videosService.getAllVideoCategories().subscribe((videoCategoriesData: VideoCategories[]) => {
       this.videoCategories = videoCategoriesData;
     });
   }
 
-  _onEdit(video) {
-    // this.openEditor(video);
-    console.log('edit me');
+  openEditor(category) {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.autoFocus = true;
+    dialogConfig.data = category;
+    dialogConfig.height = '80vh';
+    dialogConfig.width = '70vh';
+    this.dialog.open(VideoCategoriesEditorComponent, dialogConfig);
   }
 
-  _onDelete(video) {
+  onNew() {
+    const category = {
+      id: '',
+      name: '',
+      thumbnails: {
+        '270x140': '',
+        '295x144': '',
+        '300x300': '',
+        '341x307': ''
+      },
+      sequence: this.videoCategories.length + 1
+    };
+    this.openEditor(category);
+  }
+
+  onEdit(category: VideoCategories) {
+    this.openEditor(category);
+  }
+
+  onDelete(category: VideoCategories) {
     this.videoCategories = _.reject(this.videoCategories, item => {
-      return item.id === video.id;
+      return item.id === category.id;
     });
+    this.videosService.deleteCategory(category);
   }
 }
