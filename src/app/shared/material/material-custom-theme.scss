@@ -165,23 +165,48 @@ $mat-custom-dark-theme-background: (
     background: $mat-custom-light-theme-background
   );
 }
+$mat-brand-primary: (
+  50: #d9f1ff,
+  100: #b8dae8,
+  200: #98bed0,
+  300: #75a2b7,
+  400: #5b8da4,
+  500: #3f7992,
+  600: #326b81,
+  700: #24576b,
+  800: #164456,
+  900: #022f3e,
+  contrast: $contrast
+);
+$mat-brand-secondary: (
+  50: #fdf2e3,
+  100: #fadfb9,
+  200: #f7ca8d,
+  300: #f4b563,
+  400: #f1a549,
+  500: #ee983b,
+  600: #e98d38,
+  700: #e27f34,
+  800: #da7131,
+  900: #cd5c2d,
+  contrast: $contrast
+);
 // Define the palettes for your theme using the Material Design palettes available in palette.scss
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
 // hue. Available color palettes: https://www.google.com/design/spec/style/color.html
 $chs-app-primary: mat-palette($mat-custom-ice, 100);
 $chs-app-accent: mat-palette($mat-custom-warm-grey, 400);
+$custom-primary: mat-palette($mat-brand-primary, 300);
+$custom-accent: mat-palette($mat-brand-secondary, 500);
 // The warn palette is optional (defaults to red).
 $chs-app-warn: mat-palette($mat-red);
 // Create the theme object (a Sass map containing all of the palettes).
 $chs-app-theme: mat-light-theme($chs-app-primary, $chs-app-accent, $chs-app-warn);
 $chs-app-dark-theme: mat-dark-theme($chs-app-primary, $chs-app-accent, $chs-app-warn);
 $chs-custom-app-theme: mat-custom-light-theme($chs-app-primary, $chs-app-accent, $chs-app-warn);
+$custom-theme: mat-light-theme($custom-primary, $custom-accent, $chs-app-warn);
 // Include theme styles for core and each component used in your app.
 // Alternatively, you can import and @include the theme mixins for each component
 // that you are using.
-@include angular-material-theme($chs-custom-app-theme);
-// #98dafc
-// #daad86
-// #312c32
-// 75a2b7
-// ee983b
+// @include angular-material-theme($chs-custom-app-theme);
+@include angular-material-theme($custom-theme);
