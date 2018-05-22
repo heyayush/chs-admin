@@ -1,21 +1,30 @@
-<mat-table [dataSource]="gridData">
+<div class="grid-head">
+  <h2 class="grid-title">{{gridTitle}}</h2>
+  <mat-form-field>
+    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+  </mat-form-field>
+</div>
+
+<mat-table [dataSource]="gridData" matSort (matSortChange)="applySorting()">
   <ng-container *ngFor="let column of gridColumns" matColumnDef={{column}}>
-		<mat-header-cell *matHeaderCellDef><h2>{{column.toUpperCase()}}</h2></mat-header-cell>
+    <mat-header-cell *matHeaderCellDef mat-sort-header="{{column}}">
+      <h3>{{column.toUpperCase()}}</h3>
+    </mat-header-cell>
     <mat-cell *matCellDef="let row">{{row[column]}}</mat-cell>
   </ng-container>
-
   <ng-container matColumnDef="actions">
-    <mat-header-cell *matHeaderCellDef><h2>ACTIONS</h2></mat-header-cell>
+    <mat-header-cell *matHeaderCellDef>
+      <h3>ACTIONS</h3>
+    </mat-header-cell>
     <mat-cell *matCellDef="let cell">
       <button mat-icon-button>
-        <mat-icon (click)="_onEdit(cell)">mode_edit</mat-icon>
+        <mat-icon (click)="onEdit(cell)">mode_edit</mat-icon>
       </button>
       <button mat-icon-button>
-        <mat-icon (click)="_onDelete(cell)">delete</mat-icon>
+        <mat-icon (click)="onDelete(cell)">delete</mat-icon>
       </button>
     </mat-cell>
   </ng-container>
-
   <mat-header-row *matHeaderRowDef="allColumns"></mat-header-row>
   <mat-row *matRowDef="let row; columns: allColumns;"></mat-row>
 </mat-table>

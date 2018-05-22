@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import _ from 'lodash';
-import { MatDialog, MatDialogConfig } from '@angular/material';
+import { MatDialog, MatDialogConfig, MatTableDataSource } from '@angular/material';
 
 import { VideoCategories } from '../video-interfaces';
 import { VideosService } from '../videos.service';
@@ -12,8 +12,10 @@ import { VideoCategoriesEditorComponent } from '../video-categories-editor/video
   styleUrls: ['./video-categories.component.scss']
 })
 export class VideoCategoriesComponent implements OnInit {
+  title = 'Video Categories';
   displayedColumns = ['id', 'name'];
   private videoCategories: VideoCategories[];
+  private tableDataSource: MatTableDataSource<VideoCategories>;
 
   constructor(private dialog: MatDialog, private videosService: VideosService) {}
 
@@ -24,6 +26,7 @@ export class VideoCategoriesComponent implements OnInit {
   getVideoCategories(): void {
     this.videosService.getAllVideoCategories().subscribe((videoCategoriesData: VideoCategories[]) => {
       this.videoCategories = videoCategoriesData;
+      this.tableDataSource = new MatTableDataSource(videoCategoriesData);
     });
   }
 
