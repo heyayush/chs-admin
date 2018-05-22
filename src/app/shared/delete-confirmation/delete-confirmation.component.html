@@ -1,0 +1,10 @@
+<h1 mat-dialog-title>Are you sure you want to delete?</h1>
+<div mat-dialog-content>
+  <p>{{item.id}}</p>
+  <p *ngIf="item.title">{{item.title}}</p>
+  <p *ngIf="item.name">{{item.name}}</p>
+</div>
+<div mat-dialog-actions>
+  <button mat-raised-button mat-dialog-close cdkFocusInitial>No</button>
+  <button mat-raised-button mat-dialog-close (click)="onDeleteConfirmation(item)" color="warn">Delete Forever</button>
+</div>

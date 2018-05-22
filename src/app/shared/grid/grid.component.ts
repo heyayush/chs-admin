@@ -1,5 +1,9 @@
 import { Component, OnInit, Input, Output, EventEmitter, ViewChild } from '@angular/core';
 import { MatSort } from '@angular/material';
+import { MatDialog, MatDialogConfig } from '@angular/material';
+import _ from 'lodash';
+
+import { DeleteConfirmationComponent } from '../delete-confirmation/delete-confirmation.component';
 
 @Component({
   selector: 'app-grid',
@@ -15,7 +19,7 @@ export class GridComponent implements OnInit {
   @Output() delete = new EventEmitter<any>();
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor() {}
+  constructor(private dialog: MatDialog) {}
 
   ngOnInit() {
     this.allColumns = [...this.gridColumns, 'actions'];
@@ -31,10 +35,29 @@ export class GridComponent implements OnInit {
     this.gridData.filter = filterValue;
   }
 
-  onEdit(_video: any) {
-    this.edit.emit(_video);
+  onEdit(item) {
+    this.edit.emit(item);
   }
-  onDelete(_video: any) {
-    this.delete.emit(_video);
+
+  deleteConfirmation(item) {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.autoFocus = true;
+    dialogConfig.data = item;
+    dialogConfig.height = '50vh';
+    dialogConfig.width = '50vh';
+    const dialogRef = this.dialog.open(DeleteConfirmationComponent, dialogConfig);
+    const sub = dialogRef.componentInstance.deleteConfirm.subscribe(deleteItem => {
+      this.onDelete(deleteItem);
+    });
+    dialogRef.afterClosed().subscribe(() => {
+      sub.unsubscribe();
+    });
+  }
+
+  onDelete(item) {
+    this.gridData.data = _.reject(this.gridData.data, gridItem => {
+      return gridItem.id === item.id;
+    });
+    this.delete.emit(item);
   }
 }

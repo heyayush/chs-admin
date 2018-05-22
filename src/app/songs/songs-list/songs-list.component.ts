@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogConfig, MatTableDataSource } from '@angular/material';
-import _ from 'lodash';
 import { SongEditorComponent } from '../song-editor/song-editor.component';
 import { SongsList } from '../song-interfaces';
 import { SongsService } from '../songs.service';
@@ -34,7 +33,6 @@ export class SongsListComponent implements OnInit {
     dialogConfig.data = song;
     dialogConfig.height = '80vh';
     dialogConfig.width = '70vh';
-
     this.dialog.open(SongEditorComponent, dialogConfig);
   }
 
@@ -61,9 +59,6 @@ export class SongsListComponent implements OnInit {
   }
 
   onDelete(song) {
-    this.songs = _.reject(this.songs, item => {
-      return item.id === song.id;
-    });
     this.songsService.deleteSong(song);
   }
 }

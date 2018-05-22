@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import _ from 'lodash';
 import { MatDialog, MatDialogConfig, MatTableDataSource } from '@angular/material';
 
 import { SongCategories, SongsList } from '../song-interfaces';
@@ -58,9 +57,6 @@ export class SongCategoriesComponent implements OnInit {
   }
 
   onDelete(category: SongCategories) {
-    this.songCategories = _.reject(this.songCategories, item => {
-      return item.id === category.id;
-    });
     this.songsService.deleteCategory(category);
   }
 }
