@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MatDialog, MatDialogConfig } from '@angular/material';
+import { MatDialog, MatDialogConfig, MatTableDataSource } from '@angular/material';
 import _ from 'lodash';
 import { SongEditorComponent } from '../song-editor/song-editor.component';
 import { SongsList } from '../song-interfaces';
@@ -11,7 +11,9 @@ import { SongsService } from '../songs.service';
   styleUrls: ['./songs-list.component.scss']
 })
 export class SongsListComponent implements OnInit {
+  title = 'Songs List';
   private songs: SongsList[];
+  private tableDataSource: MatTableDataSource<SongsList>;
   displayedColumns = ['id', 'title'];
   constructor(private dialog: MatDialog, private songsService: SongsService) {}
 
@@ -22,6 +24,7 @@ export class SongsListComponent implements OnInit {
   getSongs(): void {
     this.songsService.getAllSongs().subscribe((songs: SongsList[]) => {
       this.songs = songs;
+      this.tableDataSource = new MatTableDataSource(songs);
     });
   }
 
