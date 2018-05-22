@@ -14,14 +14,13 @@
   </ng-container>
   <ng-container matColumnDef="actions">
     <mat-header-cell *matHeaderCellDef>
-      <h3>ACTIONS</h3>
     </mat-header-cell>
     <mat-cell *matCellDef="let cell">
       <button mat-icon-button>
-        <mat-icon (click)="onEdit(cell)">mode_edit</mat-icon>
+        <mat-icon (click)="onEdit(cell)">edit</mat-icon>
       </button>
       <button mat-icon-button>
-        <mat-icon (click)="onDelete(cell)">delete</mat-icon>
+        <mat-icon (click)="onDelete(cell)">delete_outline</mat-icon>
       </button>
     </mat-cell>
   </ng-container>
