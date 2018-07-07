@@ -4,10 +4,12 @@ import { GridComponent } from './grid/grid.component';
 import { MaterialModule } from './material/material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AddNewComponent } from './add-new/add-new.component';
+import { DeleteConfirmationComponent } from './delete-confirmation/delete-confirmation.component';
 
 @NgModule({
   imports: [CommonModule, MaterialModule, FormsModule, ReactiveFormsModule],
-  declarations: [GridComponent, AddNewComponent],
-  exports: [MaterialModule, GridComponent, FormsModule, ReactiveFormsModule, AddNewComponent]
+  declarations: [GridComponent, AddNewComponent, DeleteConfirmationComponent],
+  exports: [MaterialModule, GridComponent, FormsModule, ReactiveFormsModule, AddNewComponent],
+  entryComponents: [DeleteConfirmationComponent]
 })
 export class SharedModule {}

@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import _ from 'lodash';
 import { MatDialog, MatDialogConfig, MatTableDataSource } from '@angular/material';
 
 import { VideoCategories } from '../video-interfaces';
@@ -59,9 +58,6 @@ export class VideoCategoriesComponent implements OnInit {
   }
 
   onDelete(category: VideoCategories) {
-    this.videoCategories = _.reject(this.videoCategories, item => {
-      return item.id === category.id;
-    });
     this.videosService.deleteCategory(category);
   }
 }
